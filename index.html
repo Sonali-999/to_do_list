@@ -29,6 +29,16 @@
             cursor: pointer;
         }
 
+        .done_btn {
+            background-color: rgb(194, 194, 232);
+            color: white;
+            padding: 4px 8px;
+            text-align: center;
+            border: 1px solid blue; 
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
         .del_btn {
             background-color: rgb(231, 98, 98);
             color: white;
@@ -114,16 +124,24 @@
             const li = document.createElement("li");
             const span = document.createElement("span");
             span.textContent = text;
-            
+            const done_btn= document.createElement("button");
+            done_btn.className="done_btn";
+            done_btn.textContent = "✅";
+ 
+           
             const del_btn = document.createElement("button");
-            del_btn.className = "del_btn"; // Fixed: Injected class name to match CSS selector
+            del_btn.className = "del_btn"; 
             del_btn.textContent = "delete task";
         
             del_btn.addEventListener("click", () => {
                 li.remove();
             });
+            done_btn.addEventListener("click", () => {
+                done_btn.textContent="done"
+            })
             li.appendChild(span);
             li.appendChild(del_btn);
+            li.appendChild(done_btn);
             taskList.appendChild(li);
             input.value = "";
         });
