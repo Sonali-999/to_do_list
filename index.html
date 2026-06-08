@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            
+        }
+        .box{
+            
+            display: flex;
+            justify-content: center;
+            width: 100%;
+           
+        }
+        
+       
+        #add-btn {
+            background-color: rgb(93, 226, 93);
+            color: white;
+            padding: 8px 12px; 
+            text-align: center;
+            border: 1px solid green; 
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .del_btn {
+            background-color: rgb(231, 98, 98);
+            color: white;
+            padding: 4px 8px;
+            text-align: center;
+            border: 1px solid red; 
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        #add-btn:hover {
+            background-color: green;
+        }
+
+        .del_btn:hover {
+            background-color: red;
+        }
+
+        .heading { 
+            text-align: center;
+            width: 100%;
+            height: auto;
+            padding: 10px; 
+            box-sizing: border-box;
+            background: radial-gradient(circle, red 35%, transparent 100%);
+            color: white;
+            font-size: 20px;
+        }
+        #todo-list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        #todo-input {
+            align-items: center;
+            width: 200px;
+            height: 35px; 
+            padding: 0 10px;
+            box-sizing: border-box;
+            background-color: rgb(241, 233, 233);
+            border: 1px solid #ccc;
+        }
+        
+        li {
+            width: 310px; 
+            min-height: 40px;
+            padding: 5px 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            background-color: rgb(238, 227, 227);
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">To-Do List</h1>
+    <div class="box">
+        <div class="input-grp">
+
+            <input type="text" id="todo-input" placeholder="Enter a new task">
+            <button id="add-btn">Add Task</button>
+            <ul id="todo-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById("todo-input");
+        const btn = document.getElementById("add-btn");
+        const taskList = document.getElementById("todo-list");
+
+        btn.addEventListener("click", () => {
+            const text = input.value.trim(); 
+            if (text === "") {
+                alert("Please enter a task");
+                return;
+            }
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            span.textContent = text;
+            
+            const del_btn = document.createElement("button");
+            del_btn.className = "del_btn"; // Fixed: Injected class name to match CSS selector
+            del_btn.textContent = "delete task";
+        
+            del_btn.addEventListener("click", () => {
+                li.remove();
+            });
+            li.appendChild(span);
+            li.appendChild(del_btn);
+            taskList.appendChild(li);
+            input.value = "";
+        });
+    </script>
+</body>
+</html>
